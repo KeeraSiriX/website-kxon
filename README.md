@@ -1,16 +1,19 @@
-# KXON — personal website
+# KXON — เว็บของผม
 
-A static portfolio site. It has no server, login, database, API keys, or form submissions.
+สวัสดีครับ ผมกร หรือเรียกเฉินก็ได้ครับ เว็บนี้เป็นพื้นที่เล็กๆ ที่ผมลองทำและค่อยๆ ปรับด้วยตัวเอง เอาไว้แนะนำตัว รวบรวมช่องทางต่างๆ และแชร์สิ่งที่กำลังเรียนรู้ครับ
 
-## Preview locally
+ผมเขียนเว็บนี้ด้วย HTML, CSS และ JavaScript รูปภาพกับเพลงก็ใช้ไฟล์ที่อยู่ในโปรเจกต์นี้ เพลงใช้ไฟล์ song.wav และเริ่มเล่นจากช่วง 0:22 ที่ระดับเสียงประมาณครึ่งหนึ่ง บางเบราว์เซอร์อาจต้องกดเล่นก่อนนะครับ
 
-Open `index.html` in a browser, or serve this folder over HTTP with `python -m http.server 8000` and visit `http://localhost:8000`.
+## ลองเปิดเว็บในเครื่อง
 
-## Publish with GitHub Pages
+เปิดไฟล์ index.html ได้เลย หรือเปิด PowerShell ในโฟลเดอร์นี้แล้วรันคำสั่ง:
 
-1. Push this folder to a GitHub repository.
-2. For GitHub Free, make the repository public.
-3. In **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/(root)`, then save.
-4. Wait for the Pages deployment and use the URL shown in **Settings → Pages**.
+    python -m http.server 8000
 
-The page uses a restrictive Content Security Policy, local assets, and no third-party scripts. GitHub Pages is static hosting; it does not protect account credentials, moderate uploaded material, or prevent copyright claims. Music uses the local `song.wav` file, starts at 0:22, and requests 50% volume. Browsers may block audible autoplay until a visitor interacts with the page.
+จากนั้นเข้า http://localhost:8000
+
+## เว็บที่เปิดออนไลน์
+
+https://keerasirix.github.io/website-kxon/
+
+เวลาแก้เว็บเสร็จ ผมจะ push ไฟล์ขึ้น GitHub แล้วรอให้ GitHub Pages อัปเดตเว็บให้อัตโนมัติครับ
