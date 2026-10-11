@@ -13,4 +13,4 @@ Open `index.html` in a browser, or serve this folder over HTTP with `python -m h
 3. In **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/(root)`, then save.
 4. Wait for the Pages deployment and use the URL shown in **Settings → Pages**.
 
-The page uses a restrictive Content Security Policy, local assets, and no third-party scripts. GitHub Pages is static hosting; it does not protect account credentials, moderate uploaded material, or prevent copyright claims. The original WAV file stays local and is ignored by Git. Music plays through YouTube’s privacy-enhanced embed; the visitor’s browser loads the player from YouTube.
+The page uses a restrictive Content Security Policy, local assets, and no third-party scripts. GitHub Pages is static hosting; it does not protect account credentials, moderate uploaded material, or prevent copyright claims. Music uses the local `song.wav` file, starts at 0:22, and requests 50% volume. Browsers may block audible autoplay until a visitor interacts with the page.
