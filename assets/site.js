@@ -1,4 +1,6 @@
 
+const siteLoader=document.getElementById("site-loader"),loaderSkip=document.getElementById("loader-skip");function dismissLoader(){if(!siteLoader||siteLoader.classList.contains("is-hidden"))return;siteLoader.classList.add("is-hidden");siteLoader.setAttribute("aria-hidden","true");setTimeout(()=>siteLoader.remove(),550)}loaderSkip?.addEventListener("click",()=>{dismissLoader();if(audio.paused){audio.volume=.5;setStartPosition();audio.play().catch(syncPlayer)}});setTimeout(dismissLoader,1800);
+
 // Ask Instagram to render the live public profile embed when its script is available.
 if(window.instgrm?.Embeds)window.instgrm.Embeds.process();else window.addEventListener('load',()=>window.instgrm?.Embeds?.process(),{once:true});
 // Desktop uses pointer tilt. Touch devices use device orientation where available.
