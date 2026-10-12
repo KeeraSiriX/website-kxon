@@ -226,3 +226,16 @@ h1{font-size:clamp(58px,8vw,98px);line-height:.92;margin-top:28px}
   .card-inner{border-radius:15px;}
   .card-front,.card-back,.back-art-button{border-radius:14px;}
 }
+
+/* Midnight backdrop: layered plum and indigo light, with no repaint-heavy motion. */
+body:before{background-image:radial-gradient(ellipse 58% 47% at 78% 17%,rgba(155,86,142,.28),transparent 76%),radial-gradient(ellipse 45% 56% at 13% 82%,rgba(67,82,145,.24),transparent 74%),radial-gradient(ellipse 38% 34% at 56% 108%,rgba(158,76,109,.17),transparent 72%),radial-gradient(ellipse 25% 38% at 98% 62%,rgba(122,82,167,.14),transparent 78%),linear-gradient(132deg,#080a11 0%,#13101b 48%,#090b12 100%);background-repeat:no-repeat;background-position:center;background-size:cover}
+@media(max-width:760px){body:before{background-image:radial-gradient(ellipse 85% 35% at 75% 9%,rgba(155,86,142,.24),transparent 78%),radial-gradient(ellipse 70% 40% at 8% 69%,rgba(67,82,145,.2),transparent 74%),radial-gradient(ellipse 70% 30% at 90% 92%,rgba(158,76,109,.14),transparent 72%),linear-gradient(154deg,#080a11 0%,#13101b 50%,#090b12 100%)}}
+
+/* Keep the requested blossoms visible; animate only compositor-friendly properties. */
+@media(prefers-reduced-motion:reduce){body:before{animation:none;will-change:auto}#petals{display:block!important}}
+.card.is-flipped .back-art-button:before{filter:blur(13px)!important;will-change:transform,opacity;animation:hartzelAuraSmooth 2.6s ease-in-out infinite alternate!important}
+@keyframes hartzelAuraSmooth{from{opacity:.76;transform:scale(1.015)}to{opacity:1;transform:scale(1.065)}}
+.back-art-button:before{filter:blur(13px)!important}
+.card.is-flipped .back-art-button img{filter:drop-shadow(0 0 7px rgba(255,255,255,.92)) drop-shadow(0 0 22px rgba(198,143,255,.9))!important}
+.music.music-detached:has(.wave:not(.paused)){animation:none}
+@media(max-width:760px) and (hover:none) and (pointer:coarse){.card:not(.is-pointer-tilting){animation:cardFloat3d 9s ease-in-out infinite!important}}
