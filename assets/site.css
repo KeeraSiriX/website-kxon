@@ -97,7 +97,7 @@ h1{font-size:clamp(58px,8vw,98px);line-height:.92;margin-top:28px}
 
 /* Clear hit targets for the active side of the flip card. */
 .card-face{pointer-events:none}
-.card-front[aria-hidden="false"],.card-back[aria-hidden="false"]{pointer-events:auto}
+.card-front[aria-hidden="false"],.card.is-revealing .card-back{pointer-events:auto}
 .back-art{position:relative;display:grid;place-items:center;margin:15px 0 2px;padding:8px 12px 7px;min-height:118px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:linear-gradient(135deg,#11131aee,#26212dcc);overflow:hidden}
 .back-art:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,#b8b8c314,transparent 65%);pointer-events:none}
 .back-art img{display:block;position:relative;width:100%;height:90px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.28))}
@@ -109,3 +109,75 @@ h1{font-size:clamp(58px,8vw,98px);line-height:.92;margin-top:28px}
 .back-art-button{position:absolute;inset:0;display:grid;place-items:center;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:pointer}
 .back-art-button img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
 .back-art-button:focus-visible{outline:2px solid #f49ab7;outline-offset:-5px}
+
+/* A bold, cinematic reveal for the Hartzel logo. */
+.card-back{isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 50%,rgba(104,69,151,.34),transparent 62%),#090b12}
+.card-back:before,.card-back:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0}
+.card-back:before{background:radial-gradient(circle at center,rgba(255,255,255,.96) 0%,rgba(213,175,255,.82) 5%,rgba(147,93,216,.42) 20%,rgba(86,56,131,.12) 42%,transparent 65%);transform:scale(.18)}
+.card-back:after{inset:13%;border:1px solid rgba(230,208,255,.9);border-radius:50%;box-shadow:0 0 20px rgba(200,152,255,.55),inset 0 0 20px rgba(200,152,255,.24);transform:scale(.2)}
+.back-art-button{z-index:1;overflow:hidden}
+.back-art-button img{position:relative;z-index:0;will-change:transform,filter,opacity}
+.card.is-revealing .card-back:before{animation:hartzelFlash 1.45s cubic-bezier(.16,.7,.24,1) both}
+.card.is-revealing .card-back:after{animation:hartzelShockwave 1.25s .08s cubic-bezier(.15,.72,.25,1) both}
+.card.is-revealing .card-back .back-art-button img{animation:hartzelImpact 1.45s cubic-bezier(.15,.82,.2,1) both}
+.card.is-revealing .card-back .back-art-button:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(104deg,transparent 30%,rgba(189,139,255,.12) 40%,rgba(255,255,255,.98) 48%,rgba(236,213,255,.96) 51%,rgba(179,129,255,.32) 60%,transparent 70%);mix-blend-mode:screen;-webkit-mask-image:url("./hartzel-gang-cutout.png");mask-image:url("./hartzel-gang-cutout.png");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transform:translateX(-150%) skewX(-14deg);animation:hartzelSweep 1.55s .28s cubic-bezier(.18,.72,.24,1) both}
+@keyframes hartzelImpact{0%{opacity:0;transform:scale(.48) rotate(-7deg);filter:brightness(3.8) saturate(.4) blur(12px) drop-shadow(0 0 48px rgba(219,177,255,.95))}42%{opacity:1;transform:scale(1.1) rotate(1.5deg);filter:brightness(2.6) saturate(.85) blur(0) drop-shadow(0 0 54px rgba(231,197,255,.96))}68%{opacity:1;transform:scale(.975) rotate(-.5deg);filter:brightness(1.65) drop-shadow(0 0 32px rgba(212,165,255,.82))}100%{opacity:1;transform:scale(1) rotate(0);filter:brightness(1.14) drop-shadow(0 0 18px rgba(204,156,255,.55))}}
+@keyframes hartzelFlash{0%{opacity:0;transform:scale(.18)}28%{opacity:1;transform:scale(1.15)}62%{opacity:.48;transform:scale(1.55)}100%{opacity:0;transform:scale(1.9)}}
+@keyframes hartzelShockwave{0%{opacity:0;transform:scale(.2)}24%{opacity:.85}100%{opacity:0;transform:scale(1.55)}}
+@keyframes hartzelSweep{0%{opacity:0;transform:translateX(-150%) skewX(-14deg)}12%{opacity:1}72%{opacity:.95}100%{opacity:0;transform:translateX(150%) skewX(-14deg)}}
+@media(prefers-reduced-motion:reduce){.card-back:before,.card-back:after{display:none!important}.card.is-revealing .card-back .back-art-button img{animation:none!important;opacity:1;transform:none;filter:drop-shadow(0 0 12px rgba(212,165,255,.45));will-change:auto}.card.is-revealing .card-back .back-art-button:after{display:none!important}}
+
+/* Persistent, clearly visible aura following the transparent Hartzel silhouette. */
+.back-art-button{overflow:visible}
+.back-art-button:before{content:"";position:absolute;inset:-26px;z-index:0;pointer-events:none;background:rgba(187,127,255,.96);mix-blend-mode:screen;-webkit-mask-image:url("./hartzel-gang-cutout.png");mask-image:url("./hartzel-gang-cutout.png");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;filter:blur(19px);opacity:.82;transform:scale(.98)}
+.card.is-flipped .back-art-button:before{animation:hartzelAura 1.05s ease-in-out infinite alternate}
+.back-art-button img{z-index:1}
+@keyframes hartzelAura{from{opacity:.58;filter:blur(13px);transform:scale(.96)}to{opacity:1;filter:blur(24px);transform:scale(1.06)}}
+@keyframes hartzelImpact{0%{opacity:0;transform:scale(.48) rotate(-7deg);filter:brightness(3.8) saturate(.4) blur(12px) drop-shadow(0 0 48px rgba(219,177,255,.95))}42%{opacity:1;transform:scale(1.1) rotate(1.5deg);filter:brightness(2.6) saturate(.85) blur(0) drop-shadow(0 0 54px rgba(231,197,255,.96))}68%{opacity:1;transform:scale(.975) rotate(-.5deg);filter:brightness(1.65) drop-shadow(0 0 26px rgba(250,230,255,.98)) drop-shadow(0 0 48px rgba(203,143,255,.95)) drop-shadow(0 0 84px rgba(134,77,255,.72))}100%{opacity:1;transform:scale(1) rotate(0);filter:brightness(1.18) drop-shadow(0 0 10px rgba(255,255,255,.96)) drop-shadow(0 0 30px rgba(211,160,255,.98)) drop-shadow(0 0 66px rgba(145,87,255,.82))}}
+@media(prefers-reduced-motion:reduce){.card.is-flipped .back-art-button:before{animation:none;opacity:.9;filter:blur(17px)}}
+
+/* Detached music deck: always reachable outside the rotating profile card. */
+.card-wrap{flex-direction:column;align-items:center}
+.music.music-detached{position:relative;z-index:4;display:flex;align-items:center;gap:14px;width:min(100%,390px);min-height:78px;margin:13px 0 4px;padding:13px 15px;overflow:visible;border:1px solid rgba(240,192,220,.24);border-radius:17px;background:linear-gradient(122deg,rgba(33,24,39,.96),rgba(15,18,28,.92) 56%,rgba(39,29,52,.96));box-shadow:0 20px 48px rgba(0,0,0,.38),0 8px 28px rgba(187,112,164,.13),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(18px);transform:perspective(950px) rotateX(calc(var(--my)*.22)) rotateY(calc(var(--mx)*.22));transform-style:preserve-3d;transition:transform .2s cubic-bezier(.2,.75,.25,1),box-shadow .28s ease}
+.music.music-detached:before{content:"";position:absolute;left:0;top:17px;bottom:17px;width:2px;border-radius:2px;background:linear-gradient(transparent,#f1a9d0,#c4a0ff,transparent);box-shadow:0 0 14px rgba(229,160,220,.7);pointer-events:none}
+.music.music-detached .play{position:relative;flex:0 0 50px;width:50px;height:50px;border:1px solid rgba(255,238,248,.8);border-radius:50%;padding:0;background:radial-gradient(circle at 34% 27%,#fff1fa 0,#f8b8d4 22%,#db82af 62%,#9867ad 100%);color:#271421;font-size:16px;line-height:1;box-shadow:0 0 0 5px rgba(229,156,201,.1),0 8px 22px rgba(221,126,177,.4),inset 0 1px 5px rgba(255,255,255,.68);transform:translateZ(20px);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,filter .28s ease}
+.music.music-detached .play:hover{transform:translateZ(27px) scale(1.08);filter:brightness(1.12);box-shadow:0 0 0 7px rgba(229,156,201,.14),0 12px 30px rgba(221,126,177,.55),inset 0 1px 5px rgba(255,255,255,.75)}
+.music.music-detached .play:active{transform:translateZ(12px) scale(.96)}
+.music.music-detached .play:focus-visible{outline:2px solid #ffd1e6;outline-offset:5px}
+.music.music-detached .track{position:relative;transform:translateZ(12px)}
+.music.music-detached .track-title{font-size:12px;letter-spacing:.01em}
+.music.music-detached .track-sub{font-size:9px;letter-spacing:.04em;color:#b5a8bd}
+.music.music-detached .wave{height:25px;gap:3px;padding:0 2px;transform:translateZ(10px)}
+.music.music-detached .wave i{width:3px;height:35%;background:linear-gradient(#f6c5df,#bc91e2);box-shadow:0 0 6px rgba(209,147,210,.28)}
+.music.music-detached .wave i:nth-child(2){height:58%}.music.music-detached .wave i:nth-child(4){height:75%}
+.music.music-detached .wave:not(.paused) i{animation-duration:.56s}
+@keyframes musicDeckGlow{50%{box-shadow:0 23px 52px rgba(0,0,0,.42),0 9px 34px rgba(187,112,164,.2),inset 0 1px 0 rgba(255,255,255,.15)}}
+.music.music-detached:has(.wave:not(.paused)){animation:musicDeckGlow 3s ease-in-out infinite}
+@media(max-width:760px){.music.music-detached{width:min(100%,430px);margin-top:12px}}
+@media(max-width:390px){.music.music-detached{gap:11px;padding:11px 12px;min-height:72px}.music.music-detached .play{flex-basis:46px;width:46px;height:46px}}
+@media(prefers-reduced-motion:reduce){.music.music-detached{transition:none;transform:none!important;animation:none!important}.music.music-detached .play,.music.music-detached .track,.music.music-detached .wave{transform:none}.music.music-detached .play{transition:none}}
+
+/* Keep only the availability status in the top bar after removing brand and nav. */
+.topbar{justify-content:flex-end}
+.gyro-toggle{position:absolute;z-index:3;top:13px;left:13px;display:flex;align-items:center;gap:7px;min-height:34px;padding:0 11px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(17,16,27,.82);color:#eee3f2;backdrop-filter:blur(12px);font:10px system-ui,sans-serif;cursor:pointer;transition:background .24s,border-color .24s,box-shadow .24s,transform .24s}
+.gyro-toggle[hidden]{display:none}
+.gyro-toggle:hover,.gyro-toggle.gyro-on{border-color:rgba(219,174,255,.8);background:rgba(63,43,78,.9);box-shadow:0 0 20px rgba(176,122,226,.26)}
+.gyro-toggle:focus-visible{outline:2px solid #e8caff;outline-offset:3px}
+.gyro-toggle:disabled{opacity:.65;cursor:wait}
+.gyro-symbol{color:#d9aaff;font-size:15px;line-height:1}
+@media(hover:hover) and (pointer:fine){.gyro-toggle{display:none}}
+
+.music.music-detached{display:flex;align-items:center;gap:12px;width:min(100%,390px);min-height:64px;margin:13px 0 4px;padding:10px 13px;border:1px solid rgba(255,255,255,.13);border-radius:10px;background:rgba(18,19,29,.78);box-shadow:0 10px 28px rgba(0,0,0,.24);backdrop-filter:blur(12px);transform:none;transition:border-color .2s ease,background .2s ease}
+.music.music-detached:hover{border-color:rgba(244,154,183,.35);background:rgba(23,23,34,.9)}
+.music.music-detached:before{display:none}
+.music.music-detached .play{flex:0 0 38px;width:38px;height:38px;border:1px solid rgba(244,154,183,.3);border-radius:50%;padding:0;background:rgba(244,154,183,.15);color:#f7b1c9;font-size:13px;box-shadow:none;transform:none;transition:background .2s ease,border-color .2s ease}
+.music.music-detached .play:hover{transform:none;background:rgba(244,154,183,.28);border-color:rgba(244,154,183,.6);box-shadow:none}
+.music.music-detached .play:active{transform:scale(.96)}
+.music.music-detached .play:focus-visible{outline:2px solid #ffd1e6;outline-offset:3px}
+.music.music-detached .track{flex:1;min-width:0;transform:none}
+.music.music-detached .track-title{overflow:hidden;color:#eee;font-size:11px;font-weight:500;text-overflow:ellipsis;white-space:nowrap}
+.music.music-detached .track-sub{margin-top:4px;color:#888391;font:9px system-ui,sans-serif}
+.music.music-detached .wave{height:18px;gap:2px;transform:none}
+.music.music-detached .wave i{width:2px;background:#dc93ae;box-shadow:none}
+@media(max-width:390px){.music.music-detached{gap:10px;min-height:60px;padding:9px 11px}.music.music-detached .play{flex-basis:36px;width:36px;height:36px}}
+@media(prefers-reduced-motion:reduce){.music.music-detached,.music.music-detached .play{transition:none!important}}
