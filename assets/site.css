@@ -64,3 +64,48 @@ h1{font-size:clamp(58px,8vw,98px);line-height:.92;margin-top:28px}
 @media(hover:none),(pointer:coarse){.card:not(.is-pointer-tilting){animation:cardFloat3d 5s ease-in-out infinite!important}}
 
 
+
+/* Two-sided profile card */
+.card{overflow:hidden}
+.card-inner{position:relative;transform-style:preserve-3d;transition:transform .78s cubic-bezier(.2,.78,.18,1)}
+.card.is-flipped .card-inner{transform:rotateY(180deg)}
+.card-face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card-front{position:relative}
+.card-back{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;min-height:100%;padding:25px 25px 21px;overflow:hidden;transform:rotateY(180deg);background:radial-gradient(ellipse at 93% 8%,rgba(170,112,212,.20),transparent 37%),radial-gradient(ellipse at 0% 100%,rgba(85,120,166,.16),transparent 34%),linear-gradient(145deg,#211b2b,#14151f 70%);}
+.back-orbit{position:absolute;width:240px;height:240px;right:-119px;top:78px;border:1px solid rgba(203,162,238,.14);border-radius:50%;pointer-events:none}
+.back-orbit:before,.back-orbit:after{content:"";position:absolute;inset:17px;border:1px solid rgba(203,162,238,.11);border-radius:50%;transform:rotate(-32deg) scaleX(.45)}
+.back-orbit:after{inset:38px;transform:rotate(43deg) scaleX(.55)}
+.back-top{position:relative;display:flex;align-items:center;gap:10px;color:#c7bdcd;font-size:10px;letter-spacing:.03em}
+.back-mark{display:grid;place-items:center;width:31px;height:31px;border:1px solid #f3b4ce88;border-radius:50%;color:#ffc6dc;font:italic 14px Georgia,serif}
+.back-copy{position:relative;margin:24px 0 17px}
+.back-kicker{color:#e6a6c3;font-size:10px;margin:0 0 12px}
+.back-copy h2{font:500 clamp(24px,6vw,31px)/1.25 Georgia,serif;letter-spacing:-.03em;margin:0;color:#fff0f6}
+.back-copy h2 em{font-weight:400;color:#dfb9ec}
+.back-description{max-width:none;color:#c0bac6;font-size:11px;line-height:1.9;margin:14px 0 0}
+.back-skills{position:relative;display:flex;gap:8px;flex-wrap:wrap}
+.back-skills span{padding:7px 10px;border:1px solid #ffffff1a;border-radius:6px;background:#ffffff06;color:#e6dbe9;font:10px Consolas,"Courier New",monospace}
+.back-instagram{position:relative;display:flex;justify-content:space-between;align-items:center;margin-top:17px;padding:12px 0;border-top:1px solid #ffffff17;color:#f1dce8;text-decoration:none;font-size:10px}
+.back-instagram span{font-size:15px;color:#efabc6;transition:transform .25s}
+.back-instagram:hover span{transform:translate(2px,-2px)}
+.flip-button{position:absolute;z-index:2;top:13px;right:13px;display:flex;align-items:center;gap:8px;min-height:34px;padding:0 11px;border:1px solid #ffffff55;border-radius:999px;background:#17121dcc;color:white;backdrop-filter:blur(12px);font:10px system-ui,sans-serif;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.flip-button:hover{background:#422c45e8;border-color:#f4badc;transform:translateY(-1px)}
+.flip-button:focus-visible{outline:2px solid #ffc5dc;outline-offset:3px}
+.flip-button span{color:#f4badc;font-size:14px}
+.flip-back-button{position:relative;top:auto;right:auto;align-self:flex-start;margin-top:17px;background:#ffffff0a}
+@media(max-width:390px){.card-back{padding:20px 18px 17px}.back-copy{margin:18px 0 13px}.back-copy h2{font-size:25px}.back-description{margin-top:10px}.back-instagram{margin-top:12px;padding:9px 0}}
+@media(prefers-reduced-motion:reduce){.card-inner,.flip-button,.back-instagram span{transition:none!important}}
+
+/* Clear hit targets for the active side of the flip card. */
+.card-face{pointer-events:none}
+.card-front[aria-hidden="false"],.card-back[aria-hidden="false"]{pointer-events:auto}
+.back-art{position:relative;display:grid;place-items:center;margin:15px 0 2px;padding:8px 12px 7px;min-height:118px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:linear-gradient(135deg,#11131aee,#26212dcc);overflow:hidden}
+.back-art:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,#b8b8c314,transparent 65%);pointer-events:none}
+.back-art img{display:block;position:relative;width:100%;height:90px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.28))}
+.back-art figcaption{position:relative;margin-top:3px;color:#c8bfce;font:9px Consolas,"Courier New",monospace;letter-spacing:.08em}
+@media(max-width:390px){.back-art{min-height:115px;margin:10px 0 0;padding:5px 9px}.back-art img{height:88px}}
+
+/* Full-frame Hartzel artwork on the card back. */
+.card-back{display:grid;place-items:center;padding:0;background:#090b12}
+.back-art-button{position:absolute;inset:0;display:grid;place-items:center;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:pointer}
+.back-art-button img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+.back-art-button:focus-visible{outline:2px solid #f49ab7;outline-offset:-5px}
