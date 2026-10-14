@@ -3762,3 +3762,10 @@ body:before {
 .card.is-flipping .back-art-button:after {
   display: none !important;
 }
+
+/* Remove the translucent card frame from both faces. */
+.card-front,
+.card-back {
+  border: 0 !important;
+  box-shadow: none !important;
+}
