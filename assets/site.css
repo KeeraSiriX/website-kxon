@@ -3282,10 +3282,12 @@ body:before {
   .card,
   .card-inner {
     animation: none !important;
-    transition: none !important;
   }
   .card {
     transform: none !important;
+  }
+  .card-inner {
+    transition-duration: 0.48s !important;
   }
   .card.is-flipped .card-inner {
     transform: rotateY(180deg) !important;
@@ -3621,4 +3623,52 @@ body:before {
 }
 @media (prefers-reduced-motion: reduce) {
   .github-glass-tag { transition: none; }
+}
+
+
+/* Keep the profile card flip independent from pointer tilt and older overrides. */
+.card-wrap {
+  -webkit-perspective: 1400px;
+  perspective: 1400px;
+}
+.card {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transition: -webkit-transform 0.9s cubic-bezier(0.2, 0.78, 0.18, 1);
+  transition: transform 0.9s cubic-bezier(0.2, 0.78, 0.18, 1);
+  will-change: transform;
+}
+.card.is-flipped .card-inner {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.card-front,
+.card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.card-front {
+  position: relative;
+  -webkit-transform: rotateY(0deg) translateZ(0.5px);
+  transform: rotateY(0deg) translateZ(0.5px);
+}
+.card-back {
+  position: absolute;
+  inset: 0;
+  -webkit-transform: rotateY(180deg) translateZ(0.5px);
+  transform: rotateY(180deg) translateZ(0.5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-inner {
+    -webkit-transition-duration: 0.48s !important;
+    transition-duration: 0.48s !important;
+  }
 }
