@@ -8,7 +8,7 @@ function dismissLoader() {
     setTimeout(() => siteLoader.remove(), 550);
   }, 1150);
 }
-setTimeout(dismissLoader, 1450);
+
 if (window.instgrm?.Embeds) window.instgrm.Embeds.process();
 else
   window.addEventListener("load", () => window.instgrm?.Embeds?.process(), {
@@ -342,13 +342,24 @@ function setStartPosition() {
 }
 function syncPlayer() {
   const playing = !audio.paused;
-  playToggle.textContent = playing ? "Ⅱ" : "▶";
+  playToggle.innerHTML = playing
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>'
+    : '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.8c0-.8.88-1.28 1.55-.84l9.1 6.2a1 1 0 0 1 0 1.68l-9.1 6.2A1 1 0 0 1 8 18.2V5.8Z"/></svg>';
   playToggle.setAttribute("aria-label", playing ? "หยุดเพลง" : "เล่นเพลง");
   wave.classList.toggle("paused", !playing);
 }
+let playRequested = false;
 audio.addEventListener("loadedmetadata", () => {
+  if (!playRequested) return;
   setStartPosition();
   audio.play().catch(syncPlayer);
+});
+document.getElementById("loader-confirm")?.addEventListener("click", () => {
+  playRequested = true;
+  audio.volume = 0.5;
+  setStartPosition();
+  audio.play().catch(syncPlayer);
+  dismissLoader();
 });
 audio.addEventListener("play", syncPlayer);
 audio.addEventListener("pause", syncPlayer);
@@ -401,3 +412,33 @@ card.addEventListener("click", (event) => {
     ) || flipControls[0];
   toggleCardFlip(visibleControl, false);
 });
+
+
+async function updateVisitorCount() {
+  const countElement = document.getElementById("visitor-count");
+  if (!countElement) return;
+
+  const apiBase = "https://page-views-api.ratneshc.com/api/v1";
+  const params = new URLSearchParams({
+    site: "keerasirix.github.io",
+    path: "/website-kxon",
+  });
+
+  try {
+    await fetch(apiBase + "/track?" + params, {
+      method: "GET",
+      cache: "no-store",
+      keepalive: true,
+    });
+    const response = await fetch(apiBase + "/views?" + params, { cache: "no-store" });
+    if (!response.ok) throw new Error("Visitor count request failed");
+    const data = await response.json();
+    if (!Number.isFinite(data.views)) throw new Error("Visitor count is unavailable");
+    countElement.textContent = new Intl.NumberFormat("th-TH").format(data.views);
+  } catch {
+    countElement.textContent = "—";
+    countElement.title = "โหลดจำนวนผู้เข้าชมไม่ได้ในขณะนี้";
+  }
+}
+
+updateVisitorCount();

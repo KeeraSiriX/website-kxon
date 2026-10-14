@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs><radialGradient id="bg" cx="35%" cy="25%"><stop stop-color="#fff4fa"/><stop offset="1" stop-color="#f3b8ce"/></radialGradient></defs>
+  <circle cx="32" cy="32" r="30" fill="url(#bg)" stroke="#442a38" stroke-width="2"/>
+  <g class="chiikawa"><image href="./chiikawa.png" x="7" y="5" width="50" height="54" preserveAspectRatio="xMidYMid meet"/></g>
+  <circle class="sparkle" cx="51" cy="13" r="2.3" fill="#fff"/>
+  <style>
+    .chiikawa{transform-box:fill-box;transform-origin:center;animation:bob 1.4s ease-in-out infinite}
+    .sparkle{transform-box:fill-box;transform-origin:center;animation:twinkle 1.1s ease-in-out infinite alternate}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+    @keyframes twinkle{from{opacity:.25;transform:scale(.65)}to{opacity:1;transform:scale(1.25)}}
+    @media(prefers-reduced-motion:reduce){.chiikawa,.sparkle{animation:none}}
+  </style>
+</svg>

@@ -7,13 +7,20 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; connect-src 'none'; img-src 'self' data:; media-src 'self'; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; upgrade-insecure-requests"
+      content="default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; connect-src https://page-views-api.ratneshc.com; img-src 'self' data:; media-src 'self'; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; upgrade-insecure-requests"
     />
-    <title>kxon — digital garden</title>
-    <link rel="stylesheet" href="./assets/site.css?v=portrait-tape-layout-2" />
+    <title>KXON</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/kxon-favicon.svg" />
+    <link rel="stylesheet" href="./assets/site.css?v=glasses-cleanup-4" />
   </head>
   <body>
-    <div class="site-loader" id="site-loader" role="status" aria-live="polite">
+    <div
+      class="site-loader"
+      id="site-loader"
+      role="dialog"
+      aria-modal="true"
+      aria-label="เข้าชมโปรไฟล์และเริ่มเพลง"
+    >
       <div class="loader-screen">
         <div class="loader-art">
           <img
@@ -32,10 +39,22 @@
           <i> </i>
           <i> </i>
         </div>
+        <button
+          class="loader-confirm"
+          id="loader-confirm"
+          type="button"
+          autofocus
+        >
+          กดเพื่อชมโปรไฟล์
+        </button>
+        <p class="loader-hint">กดเพื่อเข้าเว็บไซต์พร้อมเปิดเพลง</p>
       </div>
     </div>
     <canvas id="petals"> </canvas>
     <header class="topbar">
+      <span class="visitor-counter" aria-label="จำนวนผู้เข้าชมเว็บไซต์">
+        <span aria-hidden="true">◉</span> ผู้ชม <b id="visitor-count" aria-live="polite">กำลังนับ…</b>
+      </span>
       <div class="availability">
         <i class="dot"> </i>
         AVAILABLE FOR WORK
@@ -72,11 +91,49 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span class="ico"> ◎ </span>
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.2" />
+                <circle cx="12" cy="12" r="4.1" />
+                <circle class="icon-dot" cx="17.7" cy="6.6" r="1" />
+              </svg>
+            </span>
             Instagram
           </a>
+          <a
+            class="btn social-cta"
+            href="https://www.facebook.com/KeerakeattikarnSiriprasert/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="social-icon facebook-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path class="facebook-mark" d="M13.6 20v-7h2.35l.35-2.73H13.6V8.53c0-.79.22-1.33 1.36-1.33h1.45V4.76c-.25-.03-1.12-.11-2.14-.11-2.12 0-3.57 1.29-3.57 3.66v1.96H8.3V13h2.4v7h2.9z" />
+              </svg>
+            </span>
+            Facebook
+          </a>
+          <a
+            class="github-glass-tag"
+            href="https://github.com/KeeraSiriX"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="เปิด GitHub ของ KXON"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-1.93c-3.1.68-3.75-1.32-3.75-1.32-.5-1.27-1.23-1.62-1.23-1.62-1-.69.08-.68.08-.68 1.11.08 1.7 1.2 1.7 1.2.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.7-1.49-2.48-.28-5.08-1.24-5.08-5.5 0-1.21.43-2.2 1.16-2.97-.12-.29-.5-1.4.11-2.92 0 0 .95-.3 3.05 1.14a10.7 10.7 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.52.23 2.63.12 2.92.72.77 1.16 1.76 1.16 2.97 0 4.27-2.61 5.21-5.1 5.49.4.34.76 1 .76 2.03v2.9c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+            </svg>
+            <span>GITHUB</span><i aria-hidden="true">↗</i>
+          </a>
         </div>
-        <div class="location">
+        <div
+          class="eyeglasses-feature"
+          id="eyeglasses-feature"
+          aria-label="แว่นสายตาสีดำสามมิติ หมุนหรือลากเพื่อดูรอบด้าน"
+        >
+          <canvas id="eyeglasses-canvas" aria-label="โมเดลแว่นสายตาสามมิติ"></canvas>
+        </div>
+<div class="location">
           <span> ⌖ </span>
           BANGKOK, THAILAND
           <span style="color: #55515c"> / </span>
@@ -143,7 +200,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span> ◎ </span>
+                    <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.2" /><circle cx="12" cy="12" r="4.1" /><circle class="icon-dot" cx="17.7" cy="6.6" r="1" /></svg></span>
                     Instagram
                   </a>
                   <a
@@ -152,7 +209,7 @@
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <span> f </span>
+                    <span class="social-icon facebook-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path class="facebook-mark" d="M13.6 20v-7h2.35l.35-2.73H13.6V8.53c0-.79.22-1.33 1.36-1.33h1.45V4.76c-.25-.03-1.12-.11-2.14-.11-2.12 0-3.57 1.29-3.57 3.66v1.96H8.3V13h2.4v7h2.9z" /></svg></span>
                     Facebook
                   </a>
                 </div>
@@ -187,7 +244,7 @@
             type="button"
             aria-label="เล่นเพลง"
           >
-            ▶
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.8c0-.8.88-1.28 1.55-.84l9.1 6.2a1 1 0 0 1 0 1.68l-9.1 6.2A1 1 0 0 1 8 18.2V5.8Z"/></svg>
           </button>
           <div class="track">
             <div class="track-title">LANDOKMAI — Blooming</div>
@@ -247,10 +304,11 @@
     </main>
     <footer class="foot">MADE WITH ✿ IN BANGKOK · LET THE PETALS FALL</footer>
     <script src="./assets/vendor/three/three.min.js" defer></script>
-    <script src="./assets/site.js?v=readable-mobile-2" defer></script>
+    <script src="./assets/site.js?v=music-icon-2" defer></script>
     <script
       src="./assets/cassette-world.js?v=portrait-spacing-5"
       defer
     ></script>
+    <script src="./assets/eyeglasses-world.js?v=glasses-cleanup-4" defer></script>
   </body>
 </html>
