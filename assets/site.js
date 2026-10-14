@@ -388,23 +388,26 @@ function syncCardFaces(flipped) {
 }
 const cardInner = card.querySelector(".card-inner");
 let flipCleanupTimer = 0;
-cardInner?.addEventListener("transitionend", (event) => {
-  if (event.propertyName !== "transform") return;
-  card.classList.remove("is-flipping");
+function clearFlipAnimation() {
+  card.classList.remove("is-flipping", "is-turning-forward", "is-turning-back");
   clearTimeout(flipCleanupTimer);
   flipCleanupTimer = 0;
+}
+cardInner?.addEventListener("animationend", (event) => {
+  if (event.target !== cardInner || !event.animationName.startsWith("card-flip-")) return;
+  clearFlipAnimation();
 });
 function toggleCardFlip(source, moveFocus = true) {
   card.classList.remove("is-revealing");
+  clearFlipAnimation();
+  const wasFlipped = card.classList.contains("is-flipped");
   card.classList.add("is-flipping");
-  clearTimeout(flipCleanupTimer);
   const flipped = card.classList.toggle("is-flipped");
   syncCardFaces(flipped);
+  cardInner?.getBoundingClientRect();
+  card.classList.add(wasFlipped ? "is-turning-back" : "is-turning-forward");
   if (flipped) requestAnimationFrame(() => card.classList.add("is-revealing"));
-  flipCleanupTimer = setTimeout(() => {
-    card.classList.remove("is-flipping");
-    flipCleanupTimer = 0;
-  }, 1200);
+  flipCleanupTimer = setTimeout(clearFlipAnimation, 1200);
   if (moveFocus) {
     const next = flipControls.find((button) => button !== source);
     if (next)

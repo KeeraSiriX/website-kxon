@@ -3290,8 +3290,8 @@ body:before {
     transition-duration: 0.48s !important;
   }
   .card.is-flipped .card-inner {
-    transform: rotateY(180deg) !important;
-    -webkit-transform: rotateY(180deg) !important;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 }
 .h1sub .chiikawa-mark {
@@ -3699,4 +3699,66 @@ body:before {
 .card.is-flipping .card-inner {
   border-color: transparent !important;
   box-shadow: none !important;
+}
+
+
+/* Explicit keyframes make each card turn animate from its current side. */
+.card-inner {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+.card.is-flipped .card-inner {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.card.is-turning-forward .card-inner {
+  -webkit-animation: card-flip-forward 0.9s cubic-bezier(0.22, 0.72, 0.18, 1) both !important;
+  animation: card-flip-forward 0.9s cubic-bezier(0.22, 0.72, 0.18, 1) both !important;
+}
+.card.is-turning-back .card-inner {
+  -webkit-animation: card-flip-back 0.9s cubic-bezier(0.22, 0.72, 0.18, 1) both !important;
+  animation: card-flip-back 0.9s cubic-bezier(0.22, 0.72, 0.18, 1) both !important;
+}
+@keyframes card-flip-forward {
+  0% { transform: rotateY(0deg) scale(1); }
+  42% { transform: rotateY(78deg) scale(0.96); }
+  56% { transform: rotateY(104deg) scale(0.96); }
+  100% { transform: rotateY(180deg) scale(1); }
+}
+@keyframes card-flip-back {
+  0% { transform: rotateY(180deg) scale(1); }
+  42% { transform: rotateY(258deg) scale(0.96); }
+  56% { transform: rotateY(284deg) scale(0.96); }
+  100% { transform: rotateY(360deg) scale(1); }
+}
+.card.is-flipping .card-face {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card.is-turning-forward .card-inner {
+    -webkit-animation-duration: 0.5s !important;
+    animation-duration: 0.5s !important;
+  }
+  .card.is-turning-back .card-inner {
+    -webkit-animation-duration: 0.5s !important;
+    animation-duration: 0.5s !important;
+  }
+}
+
+.card-front {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.card-back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.card.is-flipping .card-back:before,
+.card.is-flipping .card-back:after,
+.card.is-flipping .back-art-button:before,
+.card.is-flipping .back-art-button:after {
+  display: none !important;
 }
