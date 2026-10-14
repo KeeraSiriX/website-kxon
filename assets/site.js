@@ -386,11 +386,25 @@ function syncCardFaces(flipped) {
     button.setAttribute("aria-pressed", String(flipped)),
   );
 }
+const cardInner = card.querySelector(".card-inner");
+let flipCleanupTimer = 0;
+cardInner?.addEventListener("transitionend", (event) => {
+  if (event.propertyName !== "transform") return;
+  card.classList.remove("is-flipping");
+  clearTimeout(flipCleanupTimer);
+  flipCleanupTimer = 0;
+});
 function toggleCardFlip(source, moveFocus = true) {
   card.classList.remove("is-revealing");
+  card.classList.add("is-flipping");
+  clearTimeout(flipCleanupTimer);
   const flipped = card.classList.toggle("is-flipped");
   syncCardFaces(flipped);
   if (flipped) requestAnimationFrame(() => card.classList.add("is-revealing"));
+  flipCleanupTimer = setTimeout(() => {
+    card.classList.remove("is-flipping");
+    flipCleanupTimer = 0;
+  }, 1200);
   if (moveFocus) {
     const next = flipControls.find((button) => button !== source);
     if (next)
@@ -401,7 +415,9 @@ function toggleCardFlip(source, moveFocus = true) {
 }
 syncCardFaces(card.classList.contains("is-flipped"));
 flipControls.forEach((control) =>
-  control.addEventListener("click", () => toggleCardFlip(control)),
+  control.addEventListener("click", (event) =>
+    toggleCardFlip(control, event.detail === 0),
+  ),
 );
 card.addEventListener("click", (event) => {
   if (event.target.closest?.("a,button,input,textarea,select")) return;

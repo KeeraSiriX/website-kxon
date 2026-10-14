@@ -3689,3 +3689,14 @@ body:before {
 .card-back {
   overflow: hidden;
 }
+
+
+/* Hide face edges only while the card is crossing between sides. */
+.card.is-flipping .card-face {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.card.is-flipping .card-inner {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
