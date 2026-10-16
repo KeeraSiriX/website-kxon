@@ -24,13 +24,13 @@
     <meta name="twitter:image" content="./assets/profile-cover.jpg" />
 
     <!-- Preload critical assets -->
-    <link rel="preload" href="./assets/site.css?v=pink-banner-gif-20261016" as="style" />
+    <link rel="preload" href="./assets/site.css?v=palatino-song-title-20261016" as="style" />
     <link rel="preload" href="./assets/hartzel-loader.png" as="image" />
     <link rel="preload" href="./assets/profile-avatar.jpg" as="image" />
     <link rel="preload" href="./assets/profile-cover.gif" as="image" />
 
     <link rel="icon" type="image/svg+xml" href="./assets/kxon-favicon.svg" />
-    <link rel="stylesheet" href="./assets/site.css?v=pink-banner-gif-20261016" />
+    <link rel="stylesheet" href="./assets/site.css?v=palatino-song-title-20261016" />
   </head>
   <body>
     <div
@@ -279,13 +279,13 @@
         aria-labelledby="cassette-title"
       >
         <div class="model-heading">
-          <h2 id="cassette-title">มุมเพลงโปรด</h2>
-          <p>แตะที่ตลับเทปเพื่อฟังเพลง · ลากเพื่อหมุน 360°</p>
+          <h2 id="cassette-title">My favorite song</h2>
+          <p>Tap a cassette to play</p>
         </div>
         <div class="model-stage" id="model-stage">
           <canvas
             id="cassette-canvas"
-            aria-label="โมเดลเทปคาสเซ็ตสามมิติแบบโต้ตอบ"
+            aria-label="Interactive cassette tape model"
           >
           </canvas>
           <div class="vhs-track-badge" aria-label="T!NE - 18">
@@ -302,16 +302,218 @@
             <small> VHS 03 · PLAY </small>
             <strong> PERX — เชิญยิ้ม </strong>
           </div>
-          <div class="model-hud">
-            <span>
-              <i> </i>
-              REALTIME 3D
-            </span>
-            <span> DRAG / TOUCH TO ORBIT </span>
-          </div>
           <div class="model-fallback" id="model-fallback">
             เปิดโมเดล 3D ไม่ได้ในเบราว์เซอร์นี้
           </div>
+        </div>
+      </section>
+      <section class="achievements" aria-labelledby="achievements-title">
+        <div class="model-heading">
+          <h2 id="achievements-title">Achievements</h2>
+        </div>
+        <div class="achievement-grid">
+        <article class="achievement-card" aria-label="Epic achievement: Born with a smile">
+          <span class="achievement-rank">SECRET</span>
+          <div class="achievement-medal-stage">
+            <div
+              class="achievement-medal"
+              role="img"
+              aria-label="A spinning gold medal with a childhood photo on each side"
+            >
+              <span class="medal-rim-layer rim-1" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-2" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-3" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-4" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-5" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-6" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-7" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-8" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-9" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-10" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-11" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-12" aria-hidden="true"></span>
+              <div class="medal-face medal-front">
+                <img
+                  src="https://i.ibb.co/60XQmRkh/achievement-born-front.jpg"
+                  alt="Childhood photo, front of the medal"
+                />
+              </div>
+              <div class="medal-face medal-back" aria-hidden="true">
+                <img src="https://i.ibb.co/DFQSkJY/image.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <h3>Born with a smile</h3>
+        </article>
+        <article class="achievement-card" aria-label="Epic achievement: กล้องมือโปร">
+          <span class="achievement-rank">SECRET</span>
+          <div class="achievement-medal-stage">
+            <div
+              class="achievement-medal"
+              role="img"
+              aria-label="A spinning gold medal with a camera photo on each side"
+            >
+              <span class="medal-rim-layer rim-1" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-2" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-3" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-4" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-5" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-6" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-7" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-8" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-9" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-10" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-11" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-12" aria-hidden="true"></span>
+              <div class="medal-face medal-front">
+                <img
+                  src="https://i.ibb.co/FL8WGNMz/image.jpg"
+                  alt="Childhood photo holding a camera, front of the medal"
+                />
+              </div>
+              <div class="medal-face medal-back" aria-hidden="true">
+                <img src="https://i.ibb.co/GDJW0vP/image.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <h3>กล้องมือโปร</h3>
+        </article>
+        <article class="achievement-card" aria-label="Secret achievement: the best sister of the year">
+          <span class="achievement-rank">SECRET</span>
+          <div class="achievement-medal-stage">
+            <div
+              class="achievement-medal"
+              role="img"
+              aria-label="A spinning gold medal with a photo of two sisters on each side"
+            >
+              <span class="medal-rim-layer rim-1" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-2" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-3" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-4" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-5" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-6" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-7" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-8" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-9" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-10" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-11" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-12" aria-hidden="true"></span>
+              <div class="medal-face medal-front">
+                <img
+                  src="https://i.ibb.co/TDN3kJ3Q/image.jpg"
+                  alt="Childhood photo with a sister, front of the medal"
+                />
+              </div>
+              <div class="medal-face medal-back" aria-hidden="true">
+                <img src="https://i.ibb.co/Y4n3jkY6/image.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <h3>the best sister of the year</h3>
+        </article>
+        <article class="achievement-card" aria-label="Secret achievement: First study">
+          <span class="achievement-rank">SECRET</span>
+          <div class="achievement-medal-stage">
+            <div
+              class="achievement-medal"
+              role="img"
+              aria-label="A spinning gold medal with a first school photo on each side"
+            >
+              <span class="medal-rim-layer rim-1" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-2" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-3" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-4" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-5" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-6" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-7" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-8" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-9" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-10" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-11" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-12" aria-hidden="true"></span>
+              <div class="medal-face medal-front">
+                <img
+                  src="https://i.ibb.co/Q3yVSkDh/achievement-study-front.png"
+                  alt="First school photo, front of the medal"
+                />
+              </div>
+              <div class="medal-face medal-back" aria-hidden="true">
+                <img src="https://i.ibb.co/jkM8F5hs/achievement-study-back.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <h3>First study</h3>
+        </article>
+        <article class="achievement-card" aria-label="Secret achievement: EAT EAT EAT!!!">
+          <span class="achievement-rank">SECRET</span>
+          <div class="achievement-medal-stage">
+            <div
+              class="achievement-medal"
+              role="img"
+              aria-label="A spinning gold medal with childhood food photos on each side"
+            >
+              <span class="medal-rim-layer rim-1" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-2" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-3" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-4" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-5" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-6" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-7" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-8" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-9" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-10" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-11" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-12" aria-hidden="true"></span>
+              <div class="medal-face medal-front">
+                <img
+                  src="https://i.ibb.co/60XQmRkh/achievement-born-front.jpg"
+                  alt="Childhood photo eating, front of the medal"
+                />
+              </div>
+              <div class="medal-face medal-back" aria-hidden="true">
+                <img src="https://i.ibb.co/PZGdm5m7/image.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <h3>EAT EAT EAT!!!</h3>
+        </article>
+        <article class="achievement-card" aria-label="Super secret achievement: first champion">
+          <span class="achievement-rank">SUPER SECRET</span>
+          <div class="achievement-medal-stage">
+            <div
+              class="achievement-medal"
+              role="img"
+              aria-label="A spinning gold medal with a childhood team photo on the front and an engraved champion design on the back"
+            >
+              <span class="medal-rim-layer rim-1" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-2" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-3" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-4" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-5" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-6" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-7" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-8" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-9" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-10" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-11" aria-hidden="true"></span>
+              <span class="medal-rim-layer rim-12" aria-hidden="true"></span>
+              <div class="medal-face medal-front">
+                <img
+                  src="https://i.ibb.co/PzrCMt1R/image.png"
+                  alt="Childhood championship team photo, front of the medal"
+                />
+              </div>
+              <div class="medal-face medal-back medal-back-engraved">
+                <div class="medal-engraving" aria-hidden="true">
+                  <span>FIRST</span>
+                  <strong>CHAMPION</strong>
+                  <i>✦ · ✦</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>first champion</h3>
+        </article>
         </div>
       </section>
     </main>
