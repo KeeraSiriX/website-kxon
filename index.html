@@ -9,7 +9,25 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; connect-src https://page-views-api.ratneshc.com; img-src 'self' data:; media-src 'self'; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; upgrade-insecure-requests"
     />
-    <title>KXON</title>
+    <title>KXON — กรนะ · Developer & Creative</title>
+    <meta name="description" content="สวัสดีครับ ผมชื่อกรนะ กำลังศึกษา C++, Python, HTML และการพัฒนาซอฟต์แวร์ · สร้างสิ่งเล็กๆ ด้วยความตั้งใจ" />
+
+    <!-- Open Graph / Social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keerasirix.github.io/website-kxon/" />
+    <meta property="og:title" content="KXON — กรนะ · Developer & Creative" />
+    <meta property="og:description" content="สร้างสิ่งเล็กๆ ด้วยความตั้งใจ · design · code · music · late night thoughts" />
+    <meta property="og:image" content="./assets/profile-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KXON — กรนะ · Developer & Creative" />
+    <meta name="twitter:description" content="สร้างสิ่งเล็กๆ ด้วยความตั้งใจ · design · code · music" />
+    <meta name="twitter:image" content="./assets/profile-cover.jpg" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="./assets/site.css?v=card-reference-ca1a49f" as="style" />
+    <link rel="preload" href="./assets/hartzel-loader.png" as="image" />
+    <link rel="preload" href="./assets/profile-avatar.jpg" as="image" />
+
     <link rel="icon" type="image/svg+xml" href="./assets/kxon-favicon.svg" />
     <link rel="stylesheet" href="./assets/site.css?v=card-reference-ca1a49f" />
   </head>
@@ -61,7 +79,7 @@
       </div>
     </header>
     <main class="layout" id="home">
-      <section class="intro" id="about">
+      <section class="intro reveal" id="about">
         <div class="eyebrow">a little corner of the internet</div>
         <h1>
           Hi, I'm
@@ -126,21 +144,14 @@
             <span>GITHUB</span><i aria-hidden="true">↗</i>
           </a>
         </div>
-        <div
-          class="eyeglasses-feature"
-          id="eyeglasses-feature"
-          aria-label="แว่นสายตาสีดำสามมิติ หมุนหรือลากเพื่อดูรอบด้าน"
-        >
-          <canvas id="eyeglasses-canvas" aria-label="โมเดลแว่นสายตาสามมิติ"></canvas>
-        </div>
-<div class="location">
+        <div class="location">
           <span> ⌖ </span>
           BANGKOK, THAILAND
           <span style="color: #55515c"> / </span>
           <span id="clock"> 00:00:00 </span>
         </div>
       </section>
-      <section class="card-wrap">
+      <section class="card-wrap reveal reveal-delay-1">
         <article class="card">
           <div class="card-inner">
             <section
@@ -232,6 +243,7 @@
                   src="./assets/hartzel-gang-cutout.png"
                   alt="โลโก้แก๊ง Hartzel"
                   decoding="async"
+                  loading="lazy"
                 />
               </button>
             </section>
@@ -261,13 +273,13 @@
         <audio id="audio" preload="metadata" src="./song.wav"></audio>
       </section>
       <section
-        class="cassette-experience"
+        class="cassette-experience reveal reveal-delay-2"
         id="cassette-model"
         aria-labelledby="cassette-title"
       >
         <div class="model-heading">
           <h2 id="cassette-title">มุมเพลงโปรด</h2>
-          <p>แตะเพื่อเปิดฝาด้านล่าง · ลากเพื่อหมุนรอบวัตถุ</p>
+          <p>แตะที่ตลับเทปเพื่อฟังเพลง · ลากเพื่อหมุน 360°</p>
         </div>
         <div class="model-stage" id="model-stage">
           <canvas
@@ -276,17 +288,17 @@
           >
           </canvas>
           <div class="vhs-track-badge" aria-label="T!NE - 18">
-            <small> VHS 01 </small>
+            <small> VHS 01 · PLAY </small>
             <strong> T!NE — “18” </strong>
             <em> prod. snorkatje </em>
           </div>
           <div class="vhs-track-badge track-2" aria-label="Joji - Sanctuary">
-            <small> VHS 02 </small>
+            <small> VHS 02 · PLAY </small>
             <strong> Joji — Sanctuary </strong>
             <em> Official Video · 88rising </em>
           </div>
           <div class="vhs-track-badge track-3" aria-label="PERX เชิญยิ้ม">
-            <small> VHS 03 </small>
+            <small> VHS 03 · PLAY </small>
             <strong> PERX — เชิญยิ้ม </strong>
           </div>
           <div class="model-hud">
@@ -306,9 +318,9 @@
     <script src="./assets/vendor/three/three.min.js" defer></script>
     <script src="./assets/site.js?v=card-old-ca1a49f" defer></script>
     <script
-      src="./assets/cassette-world.js?v=portrait-spacing-5"
+      src="./assets/cassette-world.js?v=cosmic-trio-1"
       defer
     ></script>
-    <script src="./assets/eyeglasses-world.js?v=glasses-cleanup-4" defer></script>
+
   </body>
 </html>

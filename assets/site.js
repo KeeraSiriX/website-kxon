@@ -15,7 +15,7 @@ else
     once: true,
   });
 const card = document.querySelector(".card");
-const reduceMotion = false;
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let targetX = 0,
   targetY = 0,
   currentX = 0,
@@ -439,3 +439,25 @@ async function updateVisitorCount() {
 }
 
 updateVisitorCount();
+
+/* ============================================================
+   SCROLL FADE-IN (Intersection Observer)
+   ============================================================ */
+(function initReveal() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  items.forEach((el) => observer.observe(el));
+})();
