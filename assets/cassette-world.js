@@ -18,7 +18,7 @@
     return;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setSize(stage.clientWidth, stage.clientHeight, false);
   renderer.outputEncoding = T.sRGBEncoding;
   renderer.toneMapping = T.ACESFilmicToneMapping;
@@ -541,7 +541,7 @@
 
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(w, h, false);
 
     const portrait = w / h < 1.3;
@@ -648,10 +648,22 @@
   const clock = new T.Clock();
   const baseReelSpeed = 0.038;
   let frameId = 0;
+  let stageVisible = false;
+
+  function syncAnimationState() {
+    const shouldAnimate = stageVisible && !document.hidden;
+    if (shouldAnimate && !frameId) {
+      frameId = requestAnimationFrame(animate);
+    } else if (!shouldAnimate && frameId) {
+      cancelAnimationFrame(frameId);
+      frameId = 0;
+    }
+  }
 
   function animate() {
+    frameId = 0;
+    if (document.hidden || !stageVisible) return;
     frameId = requestAnimationFrame(animate);
-    if (document.hidden) return;
     const t = clock.getElapsedTime();
     const dt = Math.min(clock.getDelta(), 0.05);
 
@@ -707,13 +719,25 @@
     stage.classList.add("is-ready");
     const fallback = document.getElementById("model-fallback");
     if (fallback) fallback.style.display = "none";
-    animate();
+    if ("IntersectionObserver" in window) {
+      const stageObserver = new IntersectionObserver(
+        (entries) => {
+          stageVisible = entries.some((entry) => entry.isIntersecting);
+          syncAnimationState();
+        },
+        { rootMargin: "120px" },
+      );
+      stageObserver.observe(stage);
+    } else {
+      stageVisible = true;
+      syncAnimationState();
+    }
   } catch (error) {
     console.error("Cassette model render failed", error);
     stage.classList.add("is-fallback");
   }
 
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && !frameId) animate();
+    syncAnimationState();
   });
 })();

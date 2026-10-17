@@ -3322,6 +3322,9 @@ transform:rotateY(180deg)!important;-webkit-transform:rotateY(180deg)!important
   animation: achievementMedalSpin 10s linear infinite;
   box-shadow: 0 12px 18px rgba(205, 158, 76, 0.22);
 }
+.achievement-card.is-offscreen .achievement-medal {
+  animation-play-state: paused;
+}
 .medal-face {
   position: absolute;
   inset: 0;

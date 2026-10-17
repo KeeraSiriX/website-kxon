@@ -461,3 +461,20 @@ updateVisitorCount();
 
   items.forEach((el) => observer.observe(el));
 })();
+
+/* Pause the spinning medal layers while they are outside the viewport. */
+(function initAchievementMotion() {
+  const cards = document.querySelectorAll(".achievement-card");
+  if (!cards.length || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
+      });
+    },
+    { rootMargin: "80px" },
+  );
+
+  cards.forEach((card) => observer.observe(card));
+})();
